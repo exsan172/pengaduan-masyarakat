@@ -1,0 +1,36 @@
+<%- include('../layout/header.dashboard.ejs') %> 
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"><%= title %> </h1>
+        </div>
+
+        <div class="row">
+            <div class="d-flex p-4 rounded mb-4 bg-white shadow flex-fill">
+                <div class="table-responsive" style="overflow-y: auto">
+                    <table class="table table-bordered" id="dataPengaduan" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Terlapor</th>
+                                <th>Tindakan</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listPengaduan">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+    <%- include('../modal/modals.pengaduan.ejs') %>
+    <script src="js/report-script.js"></script>
+<%- include('../layout/footer.dashboard.ejs') %> 

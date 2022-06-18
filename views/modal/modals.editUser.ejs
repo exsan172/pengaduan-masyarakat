@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal fade" id="editUserModels" tabindex="-1" aria-labelledby="editUserModelsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModelsLabel">Perbarui penguna</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-fill p-3 flex-column">
+                    <div class="d-flex flex-fill my-2">
+                        <input type="text" id="editNameUser" placeholder="Masukan nama." class="p-2 rounded border w-100">
+                    </div>
+                    <div class="d-flex flex-fill my-2">
+                        <input type="email" id="editEmailUser" placeholder="Masukan email." class="p-2 rounded border w-100">
+                    </div>
+                    <div class="d-flex flex-fill my-2">
+                        <select id="editRoleUser" class="border rounded p-2 w-100">
+                            <option value="owner">owner</option>
+                            <option value="admin">admin</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" id="updateUserBtn">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>

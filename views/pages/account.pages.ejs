@@ -1,0 +1,49 @@
+<%- include('../layout/header.dashboard.ejs') %> 
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex">
+                <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+            </div>
+            <div class="d-flex">
+                <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addUserModals">
+                    <i class="fas fa-plus"></i>
+                    &nbsp;
+                    Tambah penguna
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-flex p-4 rounded mb-4 bg-white shadow flex-fill">
+                <div class="table-responsive" style="overflow-y: auto">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listUser">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+    
+    <%- include('../modal/modals.newUser.ejs') %>
+    <%- include('../modal/modals.editUser.ejs') %>
+    <%- include('../modal/modals.confirmDeleteUser.ejs') %>
+
+    <script src="js/account-script.js"></script>
+<%- include('../layout/footer.dashboard.ejs') %> 
