@@ -90,3 +90,24 @@ const detailPengaduan = (id) => {
         }
     })
 }
+
+const printPdf = () => {
+    const formulirPengaduan = document.getElementById("formulir-pengaduan")
+    if(formulirPengaduan !== null) {
+        var opt = {
+            margin:       0,
+            filename:     'formulir pengaduan.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(formulirPengaduan).save();
+        $("#pengaduanModals").modal("hide")
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: "Formulir pengaduan berhasil di download!"
+        })
+    }
+}
