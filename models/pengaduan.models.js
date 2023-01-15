@@ -25,6 +25,11 @@ const pengaduan = mongose.Schema({
         type : String,
         require : true
     },
+    category : {
+        type : String,
+        require : true,
+        enum : ["perdata", "tata usaha", "intelejen", "pidana khusus"]
+    },
     incident_photo : {
         type : String,
         require : true

@@ -13,6 +13,7 @@ const apiExternalControllers = {
                     reported        : req.body.reported,
                     work_unit       : req.body.work_unit || "-",
                     deed            : req.body.deed,
+                    category        : req.body.category,
                     incident_photo  : req.file.path,
                     seeByadmin      : false,
                     createdAt       : await config.curentTime()

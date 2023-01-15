@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    setListData()
+    setListDataAccount()
 });
 
 const createUser = () => {
@@ -26,7 +26,7 @@ const createUser = () => {
                         title: 'Sukses',
                         text: "penguna baru di buat!"
                     })
-                    setListData()
+                    setListDataAccount()
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -52,7 +52,7 @@ const createUser = () => {
     }
 }
 
-const setListData = () => {
+const setListDataAccount = () => {
     $.ajax({
         url : "/api/internal/list-user",
         method: "GET",
@@ -119,7 +119,7 @@ const deleteUser = (id) => {
                     title: 'Sukses',
                     text: "penguna di hapus!"
                 })
-                setListData()
+                setListDataAccount()
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -175,7 +175,7 @@ const updateUser = (id) => {
                     title: 'Sukses',
                     text: "penguna di perbarui !"
                 })
-                setListData()
+                setListDataAccount()
             } else {
                 Swal.fire({
                     icon: 'error',

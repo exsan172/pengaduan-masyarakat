@@ -30,4 +30,8 @@ router.get('/detail-pengaduan/:id', [
     apiInternalControllers.detailPengaduan
 ]);
 
+router.delete('/delete-pengaduan/:id', [
+    apiInternalControllers.deletePengaduan
+]);
+
 module.exports = router;

@@ -13,12 +13,17 @@ const setListData = () => {
                     html +=
                     `<tr>
                         <td>${res.data[i].reported}</td>
+                        <td>${moment(res.data[i].createdAt).format("DD MMM YYYY")}</td>
+                        <td>${res.data[i].category}</td>
                         <td>${res.data[i].deed}</td>
-                        <td>${res.data[i].seeByadmin === false ? `<span class="text-danger font-weight-bold">Belum di lihat<span>` : `<span class="text-success font-weight-bold">Sudah di lihat</span>`}</td>
+                        <td>${res.data[i].seeByadmin === false ? `<span class="text-danger font-weight-bold">Belum di lihat<span>` : `<span class="text-success font-weight-bold">Approved</span>`}</td>
                         <td>
                             <div class="d-flex w-100 justify-content-center">
                                 <div class="d-flex mr-2">
                                     <button class="btn btn-sm btn-primary" onclick="detailPengaduan('${res.data[i]._id}')">Lihat</button>
+                                </div>
+                                <div class="d-flex">
+                                    <button class="btn btn-sm btn-danger" onclick="confirmDelete('${res.data[i]._id}')">Hapus</button>
                                 </div>
                             </div>
                         </td>
@@ -35,7 +40,9 @@ const setListData = () => {
                 })
             }
 
-            $('#dataPengaduan').DataTable();
+            $('#dataPengaduan').DataTable({
+                "aaSorting": []
+            });
         },
         error : (error) => {
             Swal.fire({
@@ -43,8 +50,6 @@ const setListData = () => {
                 title: 'Oops...',
                 text: error.message
             })
-
-            $('#dataPengaduan').DataTable();
         }
     })
 }
@@ -78,8 +83,6 @@ const detailPengaduan = (id) => {
                     text: "gagal memuat pengaduan !"
                 })
             }
-
-            setListData()
         },
         error : (error) => {
             Swal.fire({
@@ -111,3 +114,50 @@ const printPdf = () => {
         })
     }
 }
+
+const confirmDelete = (id) => {
+    Swal.fire({
+        icon: "warning",
+        title: 'Apakah anda yakin ingin menghapus laporan?',
+        showCancelButton: true,
+        confirmButtonText: 'Ya',
+        cancelButtonText : 'Batal'
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            deleteReport(id)
+        }
+    })
+}
+
+const deleteReport = (id) => {
+    $.ajax({
+        url : "/api/internal/delete-pengaduan/"+id,
+        method : "DELETE",
+        success : (res) => {
+            if(res.statusCode === 200) {
+                Swal.fire({
+                    icon: "success",
+                    title: 'Laporan berhasil di hapus',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                location.reload();
+            }
+        },
+        error : (err) => {
+            console.log("error => ", err);
+            Swal.fire({
+                icon: "error",
+                title: 'Laporan gagal di hapus.',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+}
+
+$('#pengaduanModals').on('hidden.bs.modal', function () {
+    location.reload();
+})

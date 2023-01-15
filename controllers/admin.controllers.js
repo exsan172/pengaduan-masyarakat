@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt")
+const moment = require("moment-timezone")
 const userModels = require("../models/user.models")
 
 const adminControllers = {
@@ -58,7 +59,8 @@ const adminControllers = {
             res.render("pages/report.pages.ejs", {
                 title:"Pengaduan",
                 nameUser : req.session.isLogin.name,
-                role : req.session.isLogin.role
+                role : req.session.isLogin.role,
+                moment : moment
             })
         } catch (error) {
             res.redirect("/")
@@ -80,7 +82,7 @@ const adminControllers = {
     logout : async (req, res, next) => {
         req.session.destroy
         res.redirect("/")
-    },
+    }
 }
 
 module.exports = adminControllers

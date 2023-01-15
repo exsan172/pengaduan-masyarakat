@@ -82,7 +82,7 @@ const apiInternalControllers = {
 
     listPengaduan : async (req, res, next) => {
         try {
-            const pengaduan = await pengaduanModels.find({}, "_id reported deed seeByadmin").sort({ createdAt: -1 })
+            const pengaduan = await pengaduanModels.find({}, "_id reported deed seeByadmin createdAt category").sort({ createdAt: -1 })
             return config.response(res, 200, "success", pengaduan)
 
         } catch (error) {
@@ -99,7 +99,17 @@ const apiInternalControllers = {
         } catch (error) {
             config.response(res, 400, error.message)
         }
-    }
+    },
+
+    deletePengaduan : async (req, res, next) => {
+        try {
+            const pengaduan = await pengaduanModels.deleteOne({ _id:req.params.id })
+            return config.response(res, 200, "success", pengaduan)
+
+        } catch (error) {
+            config.response(res, 400, error.message)
+        }
+    },
 
 }
 
